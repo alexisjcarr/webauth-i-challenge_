@@ -4,7 +4,9 @@
   "description": "## Topics",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "preinstall": "npm install pm2 -g",
+    "start": "pm2-runtime index.js -i max",
+    "server": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,10 @@
     "express": "^4.17.1",
     "helmet": "^3.19.0",
     "knex": "^0.19.0",
+    "pm2": "^3.5.1",
     "sqlite3": "^4.0.9"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
   }
 }
