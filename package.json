@@ -1,0 +1,38 @@
+{
+  "name": "webauth-i-challenge",
+  "version": "1.0.0",
+  "description": "## Topics",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "npm install pm2 -g",
+    "start": "pm2-runtime index.js -i max",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexisjcarr/webauth-i-challenge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexisjcarr/webauth-i-challenge/issues"
+  },
+  "homepage": "https://github.com/alexisjcarr/webauth-i-challenge#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "concurrently": "^4.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^3.19.0",
+    "knex": "^0.19.0",
+    "pm2": "^3.5.1",
+    "sqlite3": "^4.0.9"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
