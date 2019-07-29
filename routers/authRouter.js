@@ -18,20 +18,36 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
-  console.log("username: ", username);
-  console.log("password: ", password);
 
   try {
     const user = await Users.findBy({ username });
-    console.log("user: ", user);
 
     if (user && bcrypt.compareSync(password, user.password)) {
+      req.session.username = user.username;
       res.status(200).json({ message: `Welcome ${user.username}!` });
     } else {
       res.status(401).json({ message: "Invalid Credentials" });
     }
   } catch (err) {
     res.status(500).json(err.message);
+  }
+});
+
+router.get("/logout", (req, res) => {
+  if (req.session) {
+    req.session.destroy(err => {
+      if (err) {
+        res.status(500).json(err.message);
+      } else {
+        res.status(200).json({
+          message: "Bye Felisha..."
+        });
+      }
+    });
+  } else {
+    res.status(200).json({
+      message: "Okay. Bye Felisha"
+    })
   }
 });
 
