@@ -1,22 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { auth } from "../store/reducers";
+////  import { Link } from "react-router-dom";
 
 class Header extends Component {
   renderContent() {
     switch (this.props.auth) {
       case null:
-        return;
+        return <a href="http://localhost:8080/api/auth/login">Login</a>;
       case false:
         return (
           <li>
-            <a href="localhost:8080/api/auth/login">Login</a>
+            <a href="http://localhost:8080/api/auth/login">Login</a>
           </li>
         );
       default:
         return (
           <li>
-            <a href="localhost:8080/api/auth/logout">Logout</a>
+            <a href="http://localhost:8080/api/auth/logout">Logout</a>
           </li>
         );
     }
@@ -35,7 +36,9 @@ class Header extends Component {
 }
 
 const mapStateToProps = ({ auth }) => {
-  return { auth };
+  return {
+    auth: auth
+  };
 };
 
 export default connect(mapStateToProps)(Header);
